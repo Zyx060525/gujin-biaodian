@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>古今标点文脉馆 · 展厅主屏</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="top-ornament"></div>
+    <div class="page-shell">
+      <header class="hero-exhibition">
+        <div class="hero-content">
+          <p class="eyebrow">数字展览 · 博物馆主屏</p>
+          <h1>古今标点文脉馆</h1>
+          <p class="hero-copy">文字是山河，标点便是渡口与亭台。一逗一停藏柔肠，一叹一问寄悲欢，从古简圈点到今页符号，方寸墨点承续千年文脉，让文字有呼吸，让心事有留白。</p>
+          <div class="hero-actions">
+            <button id="jumpToSearchBtn" type="button">进入索引展项</button>
+            <button id="jumpToAiBtn" type="button" class="ghost">进入标点展演</button>
+            <button id="enterImmersiveBtn" type="button" class="ghost">进入沉浸模式</button>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <strong>实时检索</strong>
+              <span>连接全国报刊索引开放接口</span>
+            </div>
+            <div class="metric-card">
+              <strong>AI 展演</strong>
+              <span>AI 大模型驱动诗文风格生成</span>
+            </div>
+            <div class="metric-card">
+              <strong>馆藏意象</strong>
+              <span>可叠加雕版与远程图像资源</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-visual-panel">
+            <div class="display-chip">当前展项</div>
+            <h3>“标点”如何成为历史的可视语言</h3>
+            <p>从先秦无标点到民国新式标点，展厅用档案、文本与雕版纹样，把阅读节奏重建为可直接体验的空间。</p>
+            <div class="display-list">
+              <div class="display-item">索引档案</div>
+              <div class="display-item">时代标点</div>
+              <div class="display-item">雕版复刻</div>
+            </div>
+            <div class="hero-visual-rail" id="heroVisualRail">
+              <button class="thumb-btn active" data-theme="archive">档案</button>
+              <button class="thumb-btn" data-theme="punctuation">标点</button>
+              <button class="thumb-btn" data-theme="woodblock">雕版</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="grid">
+        <section class="panel panel-wide showcase-panel">
+          <div class="panel-head">
+            <h2>展项导航</h2>
+
+          </div>
+          <div class="showcase-grid">
+            <article class="showcase-card" data-target="searchSection">
+              <div class="showcase-label">01</div>
+              <h3>索引档案展项</h3>
+              <p>以全国报刊索引为底，展示题名、作者、刊名、摘要与年代演变。</p>
+            </article>
+            <article class="showcase-card" data-target="aiSection">
+              <div class="showcase-label">02</div>
+              <h3>AI 标点展演</h3>
+              <p>把文本转写为古式句读或民国式标点，并支持接入在线大模型生成。</p>
+            </article>
+            <article class="showcase-card" data-target="woodblockSection">
+              <div class="showcase-label">03</div>
+              <h3>雕版与馆藏复刻</h3>
+              <p>将图片叠加圈点、眉批与书页感，形成更接近实体文献展陈的视觉效果。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel" id="aiSection">
+          <div class="panel-head">
+            <h2>壹 · 文本标点风格展演</h2>
+            <p>选择先秦至民国的五种时代标点风格，AI 将文字按对应历史时期的断句习惯自动排布。</p>
+          </div>
+          <textarea id="userTextInput" placeholder="请粘贴或输入一段文字，例如：山川万里风月长存谁能一语定乾坤"></textarea>
+          <div class="toolbar">
+            <input id="textFileInput" type="file" accept=".txt,.md,.json" />
+            <select id="textModeSelect">
+              <option value="pre-qin">先秦无标点</option>
+              <option value="tang-song">唐宋句读</option>
+              <option value="ming-qing">明清圈点</option>
+              <option value="modern">民国新式标点</option>
+              <option value="tongdian">通典断句</option>
+            </select>
+            <button id="applyTextBtn" type="button">生成标点版本</button>
+          </div>
+          <div id="textOutput" class="result-box"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>贰 · 名家标点风格馆</h2>
+            <p>从李白杜甫到海明威卡夫卡，十二位中外名家的标点风格，AI 按真实写作逻辑生成。</p>
+          </div>
+          <textarea id="poetTextInput" placeholder="在此输入你想要标点的文字&#10;例如：天地玄黄宇宙洪荒日月盈昃辰宿列张"></textarea>
+          <div class="toolbar">
+            <select id="poetSelect"></select>
+            <button id="poetBtn" type="button">生成风格诗文</button>
+          </div>
+          <div id="poetSummary" class="result-box"></div>
+        </section>
+
+        <section class="panel" id="searchSection">
+          <div class="panel-head">
+            <h2>叁 · 调用全国报刊索引</h2>
+            <p>数据来自上海图书馆「全国报刊索引」开放数据接口，收录了从 1833 年至今的中文报刊文献元数据——包括题名、作者、刊名、年份、卷期、页码、摘要、关键词、中图分类号等字段。输入检索词即可实时调取全国报刊索引数据。起始年份 500、终止年份 9999 表示不限年份。</p>
+          </div>
+
+          <div class="search-form">
+            <div class="field">
+              <label for="searchInput">检索词</label>
+              <input id="searchInput" value="句读" placeholder="例如：句读" />
+            </div>
+            <div class="field">
+              <label for="searchModeSelect">检索字段</label>
+              <select id="searchModeSelect">
+                <option value="TI">题名(TI)</option>
+                <option value="JTI">刊名(JTI)</option>
+                <option value="ALL">全文（ALL）</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="startYearInput">起始年份</label>
+              <input id="startYearInput" type="number" value="500" placeholder="起始年" />
+            </div>
+            <div class="field">
+              <label for="endYearInput">终止年份</label>
+              <input id="endYearInput" type="number" value="9999" placeholder="终止年" />
+            </div>
+            <button id="searchBtn" type="button">执行检索</button>
+          </div>
+
+          <div id="apiHint" class="hint">
+            接口说明：当前已把"通典 500–999"作为年代窗口纳入界面。
+          </div>
+          <div id="resultSummary" class="result-summary"></div>
+          <div id="resultsList" class="results-list"></div>
+          <div id="documentDetail" class="result-box"></div>
+        </section>
+
+        <section class="panel panel-wide" id="woodblockSection">
+          <div class="panel-head">
+            <h2>肆 · 雕版圈点复刻</h2>
+            <p>上传一张图片，或直接使用示范版，生成带圈点、眉批和书页感的复刻图。</p>
+          </div>
+          <div class="toolbar">
+            <input id="woodblockFileInput" type="file" accept="image/*" />
+            <input id="woodblockUrlInput" type="text" placeholder="可粘贴浙图/馆藏图片 URL；如有则点击生成复刻图直接加载" />
+            <button id="woodblockBtn" type="button">生成复刻图</button>
+          </div>
+          <canvas id="woodblockCanvas" width="760" height="520"></canvas>
+          <div id="woodblockHint" class="hint">古人读书以朱笔圈点字侧——小圈示句读停顿，旁点表语气重音。此展项以算法复刻这一千年传统：上传古籍图片，红色圈点将随机散落于字里行间，右下钤「文脉馆藏」印，再现古人读书批注的真实样貌。</div>
+        </section>
+      </main>
+    </div>
+
+    <div id="immersiveOverlay" class="immersive-overlay" hidden>
+      <div class="immersive-panel">
+        <button id="closeImmersiveBtn" class="ghost close-btn" type="button">关闭</button>
+        <h2>沉浸式展陈</h2>
+        <p>在全屏状态下，展厅将以更强的节奏与层次呈现“标点”的历史语义。</p>
+        <div class="immersive-stage">
+          <div class="immersive-stage-card">
+            <strong>档案层</strong>
+            <span>检索文献与年代谱系</span>
+          </div>
+          <div class="immersive-stage-card">
+            <strong>标点层</strong>
+            <span>转换为古式与民国风格</span>
+          </div>
+          <div class="immersive-stage-card">
+            <strong>雕版层</strong>
+            <span>复刻文本与藏品意象</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
